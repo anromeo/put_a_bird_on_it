@@ -40,20 +40,36 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_limit => [200, 200]
   end
 
-  version :birdify do
+  version :birdified do
     process :birdify
   end
 
-  version :mystified do
-    process :mystify
+  version :nightified do
+    process :nightify
+  end
+
+  version :edgified do
+    process :edgify
   end
 
   def birdify
-    manipulate! fomrat: "png" do |source|
+    manipulate! format: "png" do |source|
       overlay_path = Rails.root.join("app/assets/images/bird.png")
       overlay = Magick::Image.read(overlay_path).first
       source = source.resize_to_fill(400, 350)
       source.composite!(overlay, 0, 0, Magick::OverCompositeOp)
+    end
+  end
+
+  def nightify
+    manipulate! format: "png" do |source|
+      source = source.resize_to_fill(400, 350).blue_shift(factor=1.5)
+    end
+  end
+
+  def edgify
+    manipulate! format: "png" do |source|
+      source = source.resize_to_fill(400, 350).edge(8)
     end
   end
   # Add a white list of extensions which are allowed to be uploaded.

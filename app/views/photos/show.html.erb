@@ -8,7 +8,13 @@
   <%= image_tag @photo.image_url(:thumb).to_s %>
 </p>
 <p>
-  <%= image_tag @photo.image_url(:birdify).to_s %>
+  <%= image_tag @photo.image_url(:birdified).to_s %>
+</p>
+<p>
+  <%= image_tag @photo.image_url(:edgified).to_s %>
+</p>
+<p>
+  <%= image_tag @photo.image_url(:nightified).to_s %>
 </p>
 
 <%= link_to 'Edit', edit_photo_path(@photo) %> |

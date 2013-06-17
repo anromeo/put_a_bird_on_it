@@ -10,7 +10,10 @@
 
 <% @photos.each do |photo| %>
   <tr>
-    <td><%= photo.name %></td>
+    <td>
+      <%= photo.name %></br>
+      <%= image_tag photo.image_url(:birdified) %>
+    </td>
     <td><%= link_to 'Show', photo %></td>
     <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
     <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
